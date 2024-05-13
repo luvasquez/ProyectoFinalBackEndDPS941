@@ -1,2 +1,0 @@
-# ProyectoFinalBackEndDPS941
-Proyecto universitario
