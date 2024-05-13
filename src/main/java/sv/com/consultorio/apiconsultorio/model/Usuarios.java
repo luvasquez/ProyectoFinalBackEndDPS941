@@ -20,8 +20,10 @@ public class Usuarios {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name ="ID_ROL")
-    private Long idRol;
+    @JoinColumn(name = "ID_ROL", referencedColumnName = "ID")
+    @OneToOne(fetch = FetchType.LAZY)
+    @ToString.Exclude
+    private Rol rol; 
 
     private String correo;
 

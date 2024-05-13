@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import sv.com.consultorio.apiconsultorio.repository.UsuariosRepository;
 import sv.com.consultorio.apiconsultorio.service.JwtUtilService;
 
 @RestController
@@ -30,6 +32,9 @@ public class AuthController {
 
     @NonNull
     private final JwtUtilService jwtUtilService;
+    
+    @NonNull
+    private final UsuariosRepository usuariosRepository;
 
     @PostMapping(value = "login")
     public ResponseEntity<AuthResponse> login(@RequestBody LoginRequest request)
@@ -39,13 +44,17 @@ public class AuthController {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(request.getEmail(),
                         request.getPassword()));
+        
 
         final UserDetails userDetails = userDetailsService.loadUserByUsername(
                 request.getEmail());
 
         final String jwt = jwtUtilService.generateToken(userDetails);
-
-        return ResponseEntity.ok(new AuthResponse(jwt));
+        
+        final String codigoRol = usuariosRepository.findCodigoRolByCorreo(request.getEmail());
+        
+    
+        return ResponseEntity.ok(new AuthResponse(request.getEmail(),codigoRol, jwt));
     }
 
 

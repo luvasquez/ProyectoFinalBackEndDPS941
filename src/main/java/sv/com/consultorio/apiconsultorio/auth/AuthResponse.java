@@ -10,5 +10,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AuthResponse {
+	
+	private String correo;
+	private String codigoRol;
+	
     String token;
 }
