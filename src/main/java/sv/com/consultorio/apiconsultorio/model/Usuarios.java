@@ -31,5 +31,8 @@ public class Usuarios {
 
     @Column(name ="ACTIVO")
     private boolean isActivo;
+    
+    @Column(name ="CONFIG_COMPLETADA")
+    private boolean configCompletada;
 
 }

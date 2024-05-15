@@ -40,8 +40,8 @@ public class ConsultoriosController {
 
     @DeleteMapping("/delete/{code}")
     @ResponseStatus(HttpStatus.OK)
-    public BaseResponse delete (@PathVariable Long id) {
-        return consultoriosService.remove(id);
+    public BaseResponse delete (@PathVariable Long code) {
+        return consultoriosService.remove(code);
     }
 
     @PostMapping("/update")
