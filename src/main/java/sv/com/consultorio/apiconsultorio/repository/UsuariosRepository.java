@@ -14,6 +14,8 @@ public interface UsuariosRepository extends JpaRepository<Usuarios, Long> {
 
     Optional<Usuarios> findByCorreo(String correo);
     
+    Optional<Usuarios> findByCorreoAndPassword(String correo, String password);
+    
     @Query("SELECT x.rol.codigo FROM Usuarios x WHERE x.correo=:correo")
     String findCodigoRolByCorreo( @Param("correo") String correo);
     
