@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import sv.com.consultorio.apiconsultorio.model.Usuarios;
 import sv.com.consultorio.apiconsultorio.repository.UsuariosRepository;
 import sv.com.consultorio.apiconsultorio.service.JwtUtilService;
 
@@ -34,7 +35,7 @@ public class CheckTokenController {
 	@GetMapping("/token")
 	public ResponseEntity<AuthResponse> checkToken(@RequestHeader(HttpHeaders.AUTHORIZATION) String token) {
 		
-		logger.info("Autenticando al usuario {}", token);
+		logger.info("checkToken al usuario {}", token);
 		
 		if (token != null && !"".equals(token))
 			token = token.substring(7);
@@ -45,10 +46,15 @@ public class CheckTokenController {
 		
 		final String jwt = jwtUtilService.generateToken(userDetails);
         
-        final String codigoRol = usuariosRepository.findCodigoRolByCorreo(email);
-        
-    
-        return ResponseEntity.ok(new AuthResponse(email,codigoRol, jwt));
+		Usuarios usuario = usuariosRepository.findUsuarioByCorreo(email);  
+	    
+        return ResponseEntity.ok(
+        		AuthResponse.builder().correo(email)
+        		.codigoRol(usuario.getRol().getCodigo())
+        		.active(usuario.isActivo())
+        		.configCompletada(usuario.isConfigCompletada())
+        		.token(jwt)
+        		.build());
 	}
 
 }

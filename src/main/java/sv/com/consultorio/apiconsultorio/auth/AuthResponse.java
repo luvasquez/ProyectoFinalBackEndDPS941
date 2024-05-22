@@ -14,5 +14,8 @@ public class AuthResponse {
 	private String correo;
 	private String codigoRol;
 	
-    String token;
+	private boolean active;
+	private boolean configCompletada;
+	
+    private String token;
 }

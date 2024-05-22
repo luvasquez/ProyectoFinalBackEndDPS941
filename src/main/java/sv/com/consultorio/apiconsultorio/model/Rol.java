@@ -1,5 +1,7 @@
 package sv.com.consultorio.apiconsultorio.model;
 
+import java.io.Serializable;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,7 +16,10 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Rol {
+public class Rol implements Serializable {
+	
+	@Getter
+	private static final long serialVersionUID = 6056141450587273524L;
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

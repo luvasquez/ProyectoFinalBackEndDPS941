@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import sv.com.consultorio.apiconsultorio.controller.response.BaseResponse;
+import sv.com.consultorio.apiconsultorio.model.Usuarios;
 import sv.com.consultorio.apiconsultorio.repository.UsuariosRepository;
 import sv.com.consultorio.apiconsultorio.service.JwtUtilService;
 import sv.com.consultorio.apiconsultorio.service.UsuariosService;
@@ -60,10 +61,15 @@ public class AuthController {
 
         final String jwt = jwtUtilService.generateToken(userDetails);
         
-        final String codigoRol = usuariosRepository.findCodigoRolByCorreo(request.getEmail());
-        
+        Usuarios usuario = usuariosRepository.findUsuarioByCorreo(request.getEmail());  
     
-        return ResponseEntity.ok(new AuthResponse(request.getEmail(),codigoRol, jwt));
+        return ResponseEntity.ok(
+        		AuthResponse.builder().correo(request.getEmail())
+        		.codigoRol(usuario.getRol().getCodigo())
+        		.active(usuario.isActivo())
+        		.configCompletada(usuario.isConfigCompletada())
+        		.token(jwt)
+        		.build());
     }
     
     /**
