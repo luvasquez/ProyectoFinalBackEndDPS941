@@ -174,3 +174,6 @@ INSERT INTO pacientes (nombres, apellidos, fecha_nacimiento, genero, tipo_sangre
 ('Elena', 'Navarro', '1997-09-17', 'Femenino', 'A+', 'Av. Sandía 98, Ciudad', '567891236'),
 ('Oscar', 'Romero', '1983-06-26', 'Masculino', 'AB-', 'Calle Fresa 23, Ciudad', '678912347'),
 ('Gabriela', 'Iglesias', '1992-01-15', 'Femenino', 'O+', 'Av. Uva 34, Ciudad', '789123458');
+
+
+alter table doctores add DUI VARCHAR(10) not null unique;

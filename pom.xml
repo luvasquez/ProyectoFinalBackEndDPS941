@@ -14,7 +14,7 @@
     <name>api-consultorio</name>
     <description>api-consultorio</description>
     <properties>
-        <java.version>22</java.version>
+        <java.version>17</java.version>
     </properties>
     <dependencies>
         <dependency>
@@ -45,6 +45,18 @@
 		<dependency>
     		<groupId>org.springframework.boot</groupId>
     		<artifactId>spring-boot-starter-mail</artifactId>
+		</dependency>
+		
+		<!-- OAuth2 Client -->
+		<dependency>
+	    	<groupId>org.springframework.boot</groupId>
+    		<artifactId>spring-boot-starter-oauth2-client</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.google.api-client</groupId>
+			<artifactId>google-api-client</artifactId>
+			<version>1.30.8</version>
 		</dependency>
 
         <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
