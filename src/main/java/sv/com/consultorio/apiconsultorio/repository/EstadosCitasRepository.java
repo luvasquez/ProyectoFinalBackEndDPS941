@@ -6,4 +6,6 @@ import sv.com.consultorio.apiconsultorio.model.EstadosCitas;
 
 @Repository
 public interface EstadosCitasRepository extends JpaRepository<EstadosCitas, String> {
+	
+	EstadosCitas findByCodigo(String codigo);
 }

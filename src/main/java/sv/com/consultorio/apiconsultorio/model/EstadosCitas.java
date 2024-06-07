@@ -13,8 +13,11 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor
 public class EstadosCitas {
+	
+	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    @Id
     private String codigo;
 
     private String descripcion;
